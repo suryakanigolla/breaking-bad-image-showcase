@@ -9,7 +9,7 @@ const Gallery = ({ characters, perPage }) => {
   useEffect(() => {
     setCurrentPage(1);
     setNumPages(Math.ceil(characters.length / perPage));
-  }, []);
+  }, [characters]);
 
   const pageNumbers = [];
   for (let i = 0; i < numPages; i++) {
