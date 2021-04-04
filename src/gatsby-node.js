@@ -63,3 +63,26 @@ exports.sourceNodes = async ({
     createNode(nodeData);
   });
 };
+
+exports.onCreateNode = async ({
+  node,
+  actions,
+  store,
+  getCache,
+  createNodeId,
+}) => {
+  if (node.internal.type == "Character") {
+    const { createNode } = actions;
+    const fileNode = await createRemoteFileNode({
+      url: node.imageUrl,
+      parentNodeId: node.id,
+      store,
+      getCache,
+      createNode,
+      createNodeId,
+    });
+    if (fileNode) {
+      node.image___NODE = fileNode.id;
+    }
+  }
+};
