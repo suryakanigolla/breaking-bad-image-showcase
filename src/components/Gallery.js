@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
+import "./Gallery.scss"
 
 const Gallery = ({ characters, perPage }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,16 +22,21 @@ const Gallery = ({ characters, perPage }) => {
         key={number}
         id={number}
         className={currentPage === number ? "active" : ""}
-        onClick={handleClick}
+        onClick={(e) => handleClickPageNumber(e)}
       >
         {number}
       </li>
     );
   });
 
-  const renderCharacters = characters.map((item, index) => (
+  const indexOfLastCharacter = currentPage * perPage;
+  const indexOfFirstCharacter = indexOfLastCharacter - perPage;
+  const currentCharacters = characters.slice(indexOfFirstCharacter, indexOfLastCharacter);
+
+  const renderCharacters = currentCharacters.map((item, index) => (
     <Card imageData={item.node.image} name={item.node.name} key={index}></Card>
   ));
+
 
   const handleClick = (e) => {
     if (e.target.id === "prev" && currentPage !== 1) {
@@ -39,6 +45,10 @@ const Gallery = ({ characters, perPage }) => {
       setCurrentPage((prev) => prev + 1);
     }
   };
+
+  const handleClickPageNumber = (e) => {
+      setCurrentPage(Number(e.target.id));
+  }
 
   return (
     <div className="gallery">

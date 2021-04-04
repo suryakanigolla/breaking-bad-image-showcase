@@ -3,7 +3,7 @@ import "./IndexLayout.scss";
 
 const IndexLayout = ({children}) => {
     return(
-        <div className="IndexLayout">
+        <div className="indexlayout">
             {children}
         </div>
     );

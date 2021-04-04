@@ -1,0 +1,73 @@
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (min-width: 1240px) {
+      @content;
+    }
+  } @else if $point == medium {
+    @media (min-width: 900px) {
+      @content;
+    }
+  }
+}
+
+.gallery {
+  &__body {
+    display: grid;
+    grid-template-columns: repeat(1, 300px);
+    grid-auto-rows: 400px;
+    grid-auto-flow: row dense;
+
+    @include breakpoint(medium) {
+      grid-template-columns: repeat(2, 300px);
+    }
+
+    @include breakpoint(large) {
+      grid-template-columns: repeat(3, 300px);
+    }
+  }
+
+  &__footer {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .list {
+      list-style-type: none;
+      display: inline;
+      font-size: 150%;
+      margin: 0;
+      padding: 0.5em;
+
+      & li {
+        display: inline-block;
+        font-size: 100%;
+        width: auto;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 5px;
+
+        &:hover {
+          color: brown;
+        }
+
+        &.active {
+          background-color: grey;
+        }
+      }
+    }
+
+    & span button {
+      cursor: pointer;
+      background-color: black;
+      color: white;
+      padding: 2px;
+      border: none;
+
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+}
