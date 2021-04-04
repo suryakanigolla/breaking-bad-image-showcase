@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { graphql } from "gatsby";
+import React from "react";
+import { graphql, Link } from "gatsby";
 import "./Character.scss";
 
 import CardImage from "../components/CardImage";
@@ -36,18 +36,18 @@ const Character = ({ data }) => {
                 </span>
               </div>
               <div className="details--half">
-                  <span>
-                      <h3>Portrayed: </h3>
-                      {character.portrayed}
-                  </span>
-                  <span>
-                      <h3>Appeared: </h3>
-                      {character.category}
-                  </span>
-                  <span>
-                      <h3>Status: </h3>
-                      {character.status}
-                  </span>
+                <span>
+                  <h3>Portrayed: </h3>
+                  {character.portrayed}
+                </span>
+                <span>
+                  <h3>Appeared: </h3>
+                  {character.category}
+                </span>
+                <span>
+                  <h3>Status: </h3>
+                  {character.status}
+                </span>
               </div>
             </div>
           </div>

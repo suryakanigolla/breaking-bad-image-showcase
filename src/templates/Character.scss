@@ -11,36 +11,37 @@
 }
 
 .character {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: fit-content;
+  flex-wrap: wrap;
+  position: relative;
+
+  
+  &__details {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    width: fit-content;
-    flex-wrap: wrap;
-    &__details {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        width: min-content;
-        &__body {
-            display: flex;
-            gap: 20px;
-        }
+    justify-content: center;
+    gap: 10px;
+    width: min-content;
+    &__body {
+      display: flex;
+      gap: 20px;
     }
+  }
 }
 
 .details--half {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
+  & span {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-
-    & span {
-        display: flex;
-        flex-direction: column;
-        // flex-wrap: wrap;
-    }
+    // flex-wrap: wrap;
+  }
 }
-
