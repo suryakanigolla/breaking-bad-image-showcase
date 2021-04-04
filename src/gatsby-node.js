@@ -86,3 +86,12 @@ exports.onCreateNode = async ({
     }
   }
 };
+
+exports.createPages = async ({ actions }) => {
+  const { createPage } = actions;
+
+  createPage({
+    path: "/characters",
+    component: path.resolve("./src/templates/Main.js"),
+  });
+};
