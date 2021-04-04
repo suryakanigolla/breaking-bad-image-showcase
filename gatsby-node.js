@@ -1,6 +1,7 @@
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
 const axios = require("axios");
 const path = require("path");
+const { graphql } = require("gatsby");
 
 //Api request and get characters
 const getLink = (endpoint) =>
@@ -87,11 +88,34 @@ exports.onCreateNode = async ({
   }
 };
 
-exports.createPages = async ({ actions }) => {
+exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
+
+  const result = await graphql(`
+  query {
+    allCharacter {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+  }
+`)
 
   createPage({
     path: "/characters",
     component: path.resolve("./src/templates/Main.js"),
   });
+
+  result.data.allCharacter.edges.forEach(({node}) => {
+    createPage({
+      path: `/characters/${node.id}`,
+      component: path.resolve(`./src/templates/Character.js`),
+      context: {
+        id: node.id
+      }
+    })
+  })
+
 };

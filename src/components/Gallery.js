@@ -34,7 +34,7 @@ const Gallery = ({ characters, perPage }) => {
   const currentCharacters = characters.slice(indexOfFirstCharacter, indexOfLastCharacter);
 
   const renderCharacters = currentCharacters.map((item, index) => (
-    <Card imageData={item.node.image} name={item.node.name} key={index}></Card>
+    <Card imageData={item.node.image} name={item.node.name} id={item.node.id} key={index}></Card>
   ));
 
 
